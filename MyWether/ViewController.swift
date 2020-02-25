@@ -10,11 +10,61 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var tempetureLabel: UILabel!
+    @IBOutlet weak var appearentTempetureLabel: UILabel!
+    @IBOutlet weak var refreshButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        let icon = WeatherIconManager.Rain.image
+        let currentWeather = CurrentWeather(temperature: 10.0, appearentTemperature: 5.0, humidity: 30, pressure: 750, icon: icon)
+        updateUIWith(currentWeather: currentWeather)
     }
 
+    @IBAction func refreshButtonTapped(_ sender: UIButton) {
+    }
+    
+    func updateUIWith(currentWeather: CurrentWeather) {
+        self.imageView.image = currentWeather.icon
+        self.pressureLabel.text = currentWeather.pressureString
+        self.tempetureLabel.text = currentWeather.temperatureString
+        self.appearentTempetureLabel.text = currentWeather.appearentTempatureString
+        self.humidityLabel.text = currentWeather.humidityString
 
+
+
+    }
 }
+
+extension CurrentWeather {
+    var pressureString: String {
+        return "\(Int(pressure)) mm"
+    }
+    
+    var humidityString: String {
+        return "\(Int(humidity))%"
+    }
+    
+    var temperatureString: String {
+        return "\(Int(temperature))˚C"
+    }
+    
+    var appearentTempatureString: String {
+        return "Feel like: \(Int(appearentTemperature))˚C"
+    }
+}
+
+
+
+
+
+
+
+
 

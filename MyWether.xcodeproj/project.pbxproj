@@ -13,6 +13,8 @@
 		A273178424057BB0009168AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A273178224057BB0009168AD /* Main.storyboard */; };
 		A273178624057BBB009168AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A273178524057BBB009168AD /* Assets.xcassets */; };
 		A273178924057BBB009168AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A273178724057BBB009168AD /* LaunchScreen.storyboard */; };
+		A273179124058522009168AD /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A273179024058522009168AD /* CurrentWeather.swift */; };
+		A2731793240585E4009168AD /* WeatherIconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2731792240585E4009168AD /* WeatherIconManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		A273178524057BBB009168AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A273178824057BBB009168AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A273178A24057BBB009168AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A273179024058522009168AD /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		A2731792240585E4009168AD /* WeatherIconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				A273177C24057BB0009168AD /* AppDelegate.swift */,
 				A273177E24057BB0009168AD /* SceneDelegate.swift */,
 				A273178024057BB0009168AD /* ViewController.swift */,
+				A2731792240585E4009168AD /* WeatherIconManager.swift */,
+				A273179024058522009168AD /* CurrentWeather.swift */,
 				A273178224057BB0009168AD /* Main.storyboard */,
 				A273178524057BBB009168AD /* Assets.xcassets */,
 				A273178724057BBB009168AD /* LaunchScreen.storyboard */,
@@ -140,6 +146,8 @@
 			files = (
 				A273178124057BB0009168AD /* ViewController.swift in Sources */,
 				A273177D24057BB0009168AD /* AppDelegate.swift in Sources */,
+				A2731793240585E4009168AD /* WeatherIconManager.swift in Sources */,
+				A273179124058522009168AD /* CurrentWeather.swift in Sources */,
 				A273177F24057BB0009168AD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jemzza.MyWether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jemzza.MyWether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
