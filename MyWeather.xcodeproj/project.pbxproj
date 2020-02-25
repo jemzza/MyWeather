@@ -15,10 +15,12 @@
 		A273178924057BBB009168AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A273178724057BBB009168AD /* LaunchScreen.storyboard */; };
 		A273179124058522009168AD /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A273179024058522009168AD /* CurrentWeather.swift */; };
 		A2731793240585E4009168AD /* WeatherIconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2731792240585E4009168AD /* WeatherIconManager.swift */; };
+		A27317952405C471009168AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27317942405C471009168AD /* APIManager.swift */; };
+		A27317972405CCCD009168AD /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27317962405CCCD009168AD /* ErrorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A273177924057BB0009168AD /* MyWether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWether.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A273177924057BB0009168AD /* MyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A273177C24057BB0009168AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A273177E24057BB0009168AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A273178024057BB0009168AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +30,8 @@
 		A273178A24057BBB009168AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A273179024058522009168AD /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		A2731792240585E4009168AD /* WeatherIconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconManager.swift; sourceTree = "<group>"; };
+		A27317942405C471009168AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		A27317962405CCCD009168AD /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,7 @@
 		A273177A24057BB0009168AD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A273177924057BB0009168AD /* MyWether.app */,
+				A273177924057BB0009168AD /* MyWeather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,8 +67,9 @@
 				A273177C24057BB0009168AD /* AppDelegate.swift */,
 				A273177E24057BB0009168AD /* SceneDelegate.swift */,
 				A273178024057BB0009168AD /* ViewController.swift */,
-				A2731792240585E4009168AD /* WeatherIconManager.swift */,
-				A273179024058522009168AD /* CurrentWeather.swift */,
+				A27317942405C471009168AD /* APIManager.swift */,
+				A27317962405CCCD009168AD /* ErrorManager.swift */,
+				A27317982405CCDD009168AD /* Weather model */,
 				A273178224057BB0009168AD /* Main.storyboard */,
 				A273178524057BBB009168AD /* Assets.xcassets */,
 				A273178724057BBB009168AD /* LaunchScreen.storyboard */,
@@ -73,12 +78,21 @@
 			path = MyWether;
 			sourceTree = "<group>";
 		};
+		A27317982405CCDD009168AD /* Weather model */ = {
+			isa = PBXGroup;
+			children = (
+				A2731792240585E4009168AD /* WeatherIconManager.swift */,
+				A273179024058522009168AD /* CurrentWeather.swift */,
+			);
+			path = "Weather model";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A273177824057BB0009168AD /* MyWether */ = {
+		A273177824057BB0009168AD /* MyWeather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A273178D24057BBB009168AD /* Build configuration list for PBXNativeTarget "MyWether" */;
+			buildConfigurationList = A273178D24057BBB009168AD /* Build configuration list for PBXNativeTarget "MyWeather" */;
 			buildPhases = (
 				A273177524057BB0009168AD /* Sources */,
 				A273177624057BB0009168AD /* Frameworks */,
@@ -88,9 +102,9 @@
 			);
 			dependencies = (
 			);
-			name = MyWether;
+			name = MyWeather;
 			productName = MyWether;
-			productReference = A273177924057BB0009168AD /* MyWether.app */;
+			productReference = A273177924057BB0009168AD /* MyWeather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +122,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A273177424057BB0009168AD /* Build configuration list for PBXProject "MyWether" */;
+			buildConfigurationList = A273177424057BB0009168AD /* Build configuration list for PBXProject "MyWeather" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,7 +135,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A273177824057BB0009168AD /* MyWether */,
+				A273177824057BB0009168AD /* MyWeather */,
 			);
 		};
 /* End PBXProject section */
@@ -144,7 +158,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A27317952405C471009168AD /* APIManager.swift in Sources */,
 				A273178124057BB0009168AD /* ViewController.swift in Sources */,
+				A27317972405CCCD009168AD /* ErrorManager.swift in Sources */,
 				A273177D24057BB0009168AD /* AppDelegate.swift in Sources */,
 				A2731793240585E4009168AD /* WeatherIconManager.swift in Sources */,
 				A273179124058522009168AD /* CurrentWeather.swift in Sources */,
@@ -300,7 +316,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jemzza.MyWether;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MyWeather;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -318,7 +334,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jemzza.MyWether;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MyWeather;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -327,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A273177424057BB0009168AD /* Build configuration list for PBXProject "MyWether" */ = {
+		A273177424057BB0009168AD /* Build configuration list for PBXProject "MyWeather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A273178B24057BBB009168AD /* Debug */,
@@ -336,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A273178D24057BBB009168AD /* Build configuration list for PBXNativeTarget "MyWether" */ = {
+		A273178D24057BBB009168AD /* Build configuration list for PBXNativeTarget "MyWeather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A273178E24057BBB009168AD /* Debug */,

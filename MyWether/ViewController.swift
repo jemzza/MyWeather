@@ -25,6 +25,21 @@ class ViewController: UIViewController {
         let icon = WeatherIconManager.Rain.image
         let currentWeather = CurrentWeather(temperature: 10.0, appearentTemperature: 5.0, humidity: 30, pressure: 750, icon: icon)
         updateUIWith(currentWeather: currentWeather)
+        
+//        let urlString = "https://api.darksky.net/forecast/8510152572483ec690258a9e4eba4f0c/42.3601,-71.0589"
+//        let baseURL = URL(string: "https://api.darksky.net/forecast/8510152572483ec690258a9e4eba4f0c/")
+//        let fullURL = URL(string: "42.3601,-71.0589", relativeTo: baseURL)
+//
+//        let sessionConfiguration = URLSessionConfiguration.default
+//        let session = URLSession(configuration: sessionConfiguration)
+//
+//        let request = URLRequest(url: fullURL!)
+//        let dataTask = session.dataTask(with: fullURL!) { (data, response, error) in
+//
+//        }
+//        dataTask.resume()
+        
+        
     }
 
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
