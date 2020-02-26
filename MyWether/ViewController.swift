@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -19,12 +20,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    let locationManager = CLLocationManager()
     lazy var weatherManager = APIWeatherManager(apiKey: "8510152572483ec690258a9e4eba4f0c")
     let coordinates = Coordinates(latitude: 55.998148, longitude: 37.204516)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        
         getCurrentWeatherData()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation = locations.last! as CLLocation
+        
+        print("my location latitude \(userLocation.coordinate.latitude), longitude \(userLocation.coordinate.longitude)")
     }
     
     func toggleActivityIndicator(on: Bool) {
