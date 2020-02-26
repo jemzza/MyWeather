@@ -17,69 +17,60 @@ class ViewController: UIViewController {
     @IBOutlet weak var tempetureLabel: UILabel!
     @IBOutlet weak var appearentTempetureLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
+    lazy var weatherManager = APIWeatherManager(apiKey: "8510152572483ec690258a9e4eba4f0c")
+    let coordinates = Coordinates(latitude: 55.998148, longitude: 37.204516)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let icon = WeatherIconManager.Rain.image
-        let currentWeather = CurrentWeather(temperature: 10.0, appearentTemperature: 5.0, humidity: 30, pressure: 750, icon: icon)
-        updateUIWith(currentWeather: currentWeather)
-        
-//        let urlString = "https://api.darksky.net/forecast/8510152572483ec690258a9e4eba4f0c/42.3601,-71.0589"
-//        let baseURL = URL(string: "https://api.darksky.net/forecast/8510152572483ec690258a9e4eba4f0c/")
-//        let fullURL = URL(string: "42.3601,-71.0589", relativeTo: baseURL)
-//
-//        let sessionConfiguration = URLSessionConfiguration.default
-//        let session = URLSession(configuration: sessionConfiguration)
-//
-//        let request = URLRequest(url: fullURL!)
-//        let dataTask = session.dataTask(with: fullURL!) { (data, response, error) in
-//
-//        }
-//        dataTask.resume()
-        
-        
+        getCurrentWeatherData()
+    }
+    
+    func toggleActivityIndicator(on: Bool) {
+        refreshButton.isHidden = on
+        if on {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+    
+    func getCurrentWeatherData() {
+            weatherManager.fetchCurrentWeatherWith(coordinates: coordinates) { (result) in
+                
+                self.toggleActivityIndicator(on: false)
+                
+            switch result {
+            case .Succes(let currentWeather):
+                self.updateUIWith(currentWeather: currentWeather)
+            case .Failure(let error as NSError):
+                
+                //функция с 3 вх параметрами
+                
+                let alertController = UIAlertController(title: "Unable to get data", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            default: break
+            }
+        }
     }
 
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
+        toggleActivityIndicator(on: true)
+        getCurrentWeatherData()
     }
     
     func updateUIWith(currentWeather: CurrentWeather) {
         self.imageView.image = currentWeather.icon
         self.pressureLabel.text = currentWeather.pressureString
         self.tempetureLabel.text = currentWeather.temperatureString
-        self.appearentTempetureLabel.text = currentWeather.appearentTempatureString
+        self.appearentTempetureLabel.text = currentWeather.apparentTemperatureString
         self.humidityLabel.text = currentWeather.humidityString
 
 
 
     }
 }
-
-extension CurrentWeather {
-    var pressureString: String {
-        return "\(Int(pressure)) mm"
-    }
-    
-    var humidityString: String {
-        return "\(Int(humidity))%"
-    }
-    
-    var temperatureString: String {
-        return "\(Int(temperature))˚C"
-    }
-    
-    var appearentTempatureString: String {
-        return "Feel like: \(Int(appearentTemperature))˚C"
-    }
-}
-
-
-
-
-
-
-
-
-

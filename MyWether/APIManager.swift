@@ -11,6 +11,16 @@ import Foundation
 typealias JSONTask = URLSessionDataTask
 typealias JSONCompletionHandler = ([String: AnyObject]?, HTTPURLResponse?, Error?) -> Void
 
+protocol JSONDecodable {
+    init?(JSON: [String: AnyObject])
+}
+
+protocol FinalURLPoint {
+    var baseURL: URL { get }
+    var path: String { get }
+    var request: URLRequest { get }
+}
+
 enum APIResult<T> {
     case Succes(T)
     case Failure(Error)
@@ -21,9 +31,7 @@ protocol APIManager {
     var session: URLSession { get }
     
     func JSONTaskWith(request: URLRequest, completionHandler: @escaping JSONCompletionHandler) -> JSONTask
-    func fetch<T>(request: URLRequest, parse: ([String: AnyObject]) -> T?, completionHandler: @escaping (APIResult<T>) -> Void)
-    
-    init(sessionCongiguration: URLSessionConfiguration)
+    func fetch<T: JSONDecodable>(request: URLRequest, parse: @escaping ([String: AnyObject]) -> T?, completionHandler: @escaping (APIResult<T>) -> Void)
 }
 
 extension APIManager {
@@ -61,18 +69,20 @@ extension APIManager {
     
     func fetch<T>(request: URLRequest, parse: @escaping ([String: AnyObject]) -> T?, completionHandler: @escaping (APIResult<T>) -> Void) {
         let dataTask = JSONTaskWith(request: request) { (json, response, error) in
-            guard let json = json else {
-                if let error = error {
+            DispatchQueue.main.async {
+                guard let json = json else {
+                    if let error = error {
+                        completionHandler(.Failure(error))
+                    }
+                    return
+                }
+                
+                if let value = parse(json) {
+                    completionHandler(.Succes(value))
+                } else {
+                    let error = NSError(domain: LAANetworkingErrorDomain, code: UnexpectedResponseError, userInfo: nil)
                     completionHandler(.Failure(error))
                 }
-                return
-            }
-            
-            if let value = parse(json) {
-                completionHandler(.Succes(value))
-            } else {
-                let error = NSError(domain: LAANetworkingErrorDomain, code: UnexpectedResponseError, userInfo: nil)
-                completionHandler(.Failure(error))
             }
         }
         dataTask.resume()
